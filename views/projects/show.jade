@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1= project.name
+  p
+    strong Opis: 
+    | #{project.description}
+  p
+    strong Cijena: 
+    | #{project.price}
+  p
+    strong Obavljeni poslovi: 
+    ul
+      each task in project.tasks
+        li= task
+  p
+    strong Datum početka: 
+    | #{project.startDate}
+  p
+    strong Datum završetka: 
+    | #{project.endDate}
+
+  a(href="/projects/#{project._id}/edit", class="btn btn-warning me-2") Uredi
+  form(action="/projects/#{project._id}?_method=DELETE", method="POST", style="display:inline")
+    button.btn.btn-danger(type="submit") Obriši
+  a(href="/projects", class="btn btn-secondary ms-2") Natrag
